@@ -7,7 +7,7 @@ import numpy as np
 from scipy.sparse.linalg import svds
 
 # Load the merged dataset
-merged_data = pd.read_csv(r'C:\AIML\movie_recommendation_system\merged_dataset.csv')
+merged_data = pd.read_csv(r'\movie_recommendation_system\merged_dataset.csv')
 
 # Basic exploration
 print("Merged data head:\n", merged_data.head())
