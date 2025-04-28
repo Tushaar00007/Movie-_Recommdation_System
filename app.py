@@ -18,7 +18,7 @@ with st.spinner("Initializing app and loading data..."):
     def load_and_process_data():
         start_time = time.time()
         try:
-            data_path = r'C:\AIML\movie_recommendation_system\moviedataset\merged_dataset.csv'
+            data_path = r'C:\AIML\movie_recommendation_system\merged_dataset.csv'
             if not os.path.exists(data_path):
                 raise FileNotFoundError(f"Dataset file not found at: {data_path}")
             
