@@ -5,9 +5,18 @@ from sklearn.metrics import mean_squared_error
 import scipy.sparse as sparse
 import numpy as np
 from scipy.sparse.linalg import svds
+import kagglehub
+from kagglehub import KaggleDatasetAdapter
 
-# Load the merged dataset
-merged_data = pd.read_csv(r'\movie_recommendation_system\merged_dataset.csv')
+# Load the dataset from Kaggle
+df = kagglehub.load_dataset(
+    KaggleDatasetAdapter.PANDAS,
+    "namanjha4050/movie-recommendation",
+    "merged_dataset.csv"
+)
+
+# Use the loaded dataframe as merged_data
+merged_data = df
 
 # Basic exploration
 print("Merged data head:\n", merged_data.head())
@@ -19,7 +28,7 @@ min_ratings = 100
 user_counts = merged_data['userId'].value_counts()
 movie_counts = merged_data['movieId'].value_counts()
 filtered_data = merged_data[merged_data['userId'].isin(user_counts[user_counts >= min_ratings].index)]
-filtered_data = filtered_data[filtered_data['movieId'].isin(movie_counts[movie_counts >= min_ratings].index)]
+filtered_data = filtered_data[merged_data['movieId'].isin(movie_counts[movie_counts >= min_ratings].index)]
 print("Filtered data shape:", filtered_data.shape)
 print("Number of users after filtering:", filtered_data['userId'].nunique())
 print("Number of movies after filtering:", filtered_data['movieId'].nunique())
