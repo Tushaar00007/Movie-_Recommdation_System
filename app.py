@@ -5,14 +5,11 @@ import os
 import time
 from kagglehub import dataset_download
 
-# Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Page config
 st.set_page_config(page_title="Movie Recommendation System", page_icon="🎬", layout="centered")
 
-# Load dataset
 @st.cache_data
 def load_data():
     logger.info("Downloading dataset from Kaggle...")
